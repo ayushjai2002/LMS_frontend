@@ -37,6 +37,12 @@ const Navbar = () => {
 
           {/* Right-side Buttons */}
           <div className="hidden md:flex space-x-4">
+          <button
+              onClick={() => navigate('/dashboard')}
+              className="px-4 py-2 font-bold text-gray-700 hover:text-customColor-light"
+            >
+              Dashboard
+            </button>
             <button
               onClick={() => navigate('/sign-in')}
               className="px-4 py-2 font-bold text-gray-700 hover:text-customColor-light"
