@@ -89,6 +89,12 @@ const Navbar = () => {
             ))}
 
             <button
+              onClick={() => { navigate('/dashboard'); setMenuOpen(false); }}
+              className="block text-gray-700 px-3 py-2 rounded-md text-base font-medium"
+            >
+              Dashboard
+            </button>
+            <button
               onClick={() => { navigate('/sign-in'); setMenuOpen(false); }}
               className="block text-gray-700 px-3 py-2 rounded-md text-base font-medium"
             >
