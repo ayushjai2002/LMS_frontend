@@ -6,7 +6,7 @@ import AxiosInstance from "../utils/AxiosInstance";
 import axios from "axios";
 
 const Dashboard = () => {
-  const jwt = localStorage.getItem('token');
+  // const jwt = localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user'));
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -28,42 +28,42 @@ const Dashboard = () => {
     }
   };
 
-  useEffect(() => {
-    // Ensure the token and user data are available
-    if (!jwt || !user) {
-      navigate('/sign-in');
-      handleLogout()
-    } else {
-      // Set username based on user object or default to "User"
-      setUsername(user?.first_name || "User");
-      const getSomeData =async ()=>{
-         try {const res =await AxiosInstance.get('auth/get-something/')
-          console.log(res.data)}
-          catch(error){
-            console.log('error',error)
-          }
-      }
-  getSomeData();
-    }
-  }, [jwt, user]);
+  // useEffect(() => {
+  //   // Ensure the token and user data are available
+  //   if (!jwt || !user) {
+  //     navigate('/sign-in');
+  //     handleLogout()
+  //   } else {
+  //     // Set username based on user object or default to "User"
+  //     setUsername(user?.first_name || "User");
+  //     const getSomeData =async ()=>{
+  //        try {const res =await AxiosInstance.get('auth/get-something/')
+  //         console.log(res.data)}
+  //         catch(error){
+  //           console.log('error',error)
+  //         }
+  //     }
+  // getSomeData();
+  //   }
+  // }, [jwt, user]);
 
   const toggleProfileMenu = () => setIsProfileMenuOpen(!isProfileMenuOpen);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
   const toggleSubMenu = () => setIsSubMenuOpen(!isSubMenuOpen);
 
 
-const refresh=localStorage.getItem('refresh_token');
+// const refresh=localStorage.getItem('refresh_token');
 
-  const handleLogout = async ()=>{
-    const res = await AxiosInstance.post('auth/logout/', {'refresh_token':refresh})
-    if (res.status === 204) {
-         localStorage.removeItem('token')
-         localStorage.removeItem('refresh_token')
-         localStorage.removeItem('user')
-         navigate('/sign-in')
-         toast.warn("logout successful")
-    }
-  }
+//   const handleLogout = async ()=>{
+//     const res = await AxiosInstance.post('auth/logout/', {'refresh_token':refresh})
+//     if (res.status === 204) {
+//          localStorage.removeItem('token')
+//          localStorage.removeItem('refresh_token')
+//          localStorage.removeItem('user')
+//          navigate('/sign-in')
+//          toast.warn("logout successful")
+//     }
+//   }
 
   const SidebarItem = ({ icon, label, hasSubmenu = false, submenuItems }) => {
     const handleItemClick = (item) => {
@@ -139,7 +139,8 @@ const refresh=localStorage.getItem('refresh_token');
                 <button className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
                   <FaQuestionCircle className="inline mr-2" /> Support
                 </button>
-                <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">
+                {/* onClick={handleLogout} (Add when we will use useEffect) */}
+                <button className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">
                   <FaSignOutAlt className="inline mr-2" /> Logout
                 </button>
               </div>
